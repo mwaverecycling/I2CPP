@@ -2,7 +2,7 @@
 // Created by Scott Fasone on 6/4/18.
 //
 
-#include "devices/ADS1115.hpp"
+#include "devices/ads1115.hpp"
 
 namespace i2cpp
 {

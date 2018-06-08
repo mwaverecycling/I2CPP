@@ -1,4 +1,4 @@
-#include "devices/PCA9555.hpp"
+#include "devices/pca9555.hpp"
 
 
 namespace i2cpp
