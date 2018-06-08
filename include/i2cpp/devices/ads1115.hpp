@@ -3,11 +3,11 @@
 
 #include <cstdint>
 
-#include "i2cdevice.hpp"
+#include "i2cpp/device.hpp"
 
 namespace i2cpp
 {
-    class ADS1115 : public I2CDevice
+    class ADS1115 : public Device
     {
         public:
             ADS1115(int bus, uint8_t address);

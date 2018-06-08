@@ -8,11 +8,11 @@
 
 namespace i2cpp
 {
-    class I2CNetwork
+    class I2CPP
     {
         public:
-            I2CNetwork(I2CNetwork const&) = delete;
-            void operator=(I2CNetwork const&) = delete;
+            I2CPP(I2CPP const&) = delete;
+            void operator=(I2CPP const&) = delete;
 
             static int open_adapter(int bus);
             static int open_adapter(std::string filename);
@@ -20,9 +20,9 @@ namespace i2cpp
             static std::size_t read_i2c(int adapter, int address, uint8_t* buffer, std::size_t length);
 
         private:
-            I2CNetwork();
-            ~I2CNetwork();
-            static I2CNetwork& instance();
+            I2CPP();
+            ~I2CPP();
+            static I2CPP& instance();
 
             std::map<std::string, int> fds;
             std::map<int, uint8_t> regs;

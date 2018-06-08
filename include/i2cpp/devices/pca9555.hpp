@@ -3,13 +3,13 @@
 
 #include <cstdint>
 
-#include "i2cpp.hpp"
-#include "i2cdevice.hpp"
+#include "i2cpp/i2cpp.hpp"
+#include "i2cpp/device.hpp"
 
 
 namespace i2cpp
 {
-    class PCA9555 : public I2CDevice
+    class PCA9555 : public Device
     {
         public:
             PCA9555(int bus, uint8_t address);

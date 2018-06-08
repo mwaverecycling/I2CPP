@@ -1,20 +1,16 @@
-//
-// Created by Scott Fasone on 6/4/18.
-//
-
-#ifndef I2CPP_I2CDEVICE_HPP
-#define I2CPP_I2CDEVICE_HPP
+#ifndef I2CPP_DEVICE_HPP
+#define I2CPP_DEVICE_HPP
 
 #include <cstdint>
 #include <cstddef>
 
 namespace i2cpp
 {
-    class I2CDevice
+    class Device
     {
         public:
-            I2CDevice(int bus, uint8_t address);
-            virtual ~I2CDevice() = default;
+            Device(int bus, uint8_t address);
+            virtual ~Device() = default;
 
         protected:
             std::size_t write_i2c(uint8_t* buffer, std::size_t length);
@@ -26,4 +22,4 @@ namespace i2cpp
     };
 }
 
-#endif //I2CPP_I2CDEVICE_HPP
+#endif //I2CPP_DEVICE_HPP

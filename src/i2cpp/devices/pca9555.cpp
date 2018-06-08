@@ -1,14 +1,14 @@
-#include "devices/pca9555.hpp"
+#include "i2cpp/devices/pca9555.hpp"
 
 
 namespace i2cpp
 {
-    PCA9555::PCA9555(int bus, uint8_t address) : I2CDevice(bus, address) {  }
-    PCA9555::PCA9555(int bus, uint8_t address, bool output) : I2CDevice(bus, address)
+    PCA9555::PCA9555(int bus, uint8_t address) : Device(bus, address) {  }
+    PCA9555::PCA9555(int bus, uint8_t address, bool output) : Device(bus, address)
     {
         this->write_config(0x0000);
     }
-    PCA9555::PCA9555(int bus, uint8_t address, uint16_t config) : I2CDevice(bus, address)
+    PCA9555::PCA9555(int bus, uint8_t address, uint16_t config) : Device(bus, address)
     {
         this->write_config(config);
     }
