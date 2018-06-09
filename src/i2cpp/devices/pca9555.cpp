@@ -6,7 +6,7 @@ namespace i2cpp
     PCA9555::PCA9555(int bus, uint8_t address) : Device(bus, address) {  }
     PCA9555::PCA9555(int bus, uint8_t address, bool output) : Device(bus, address)
     {
-        this->write_config(0x0000);
+        this->write_config(output ? 0x0000 : 0xffff);
     }
     PCA9555::PCA9555(int bus, uint8_t address, uint16_t config) : Device(bus, address)
     {
