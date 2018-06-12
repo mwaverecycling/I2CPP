@@ -12,6 +12,9 @@ namespace i2cpp
     {
         this->write_config(config);
     }
+    uint_fast16_t PCA9555::get_state() const { return this->prev_state; }
+    void PCA9555::set_state(uint_fast16_t state) { this->prev_state = state; }
+
 
     uint16_t PCA9555::read_input() { return this->read_register(0x00); }
     bool PCA9555::read_input_pin(uint8_t pin) { return this->read_register_pin(0x00, pin); }

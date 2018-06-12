@@ -12,13 +12,15 @@ namespace i2cpp
             Device(int bus, uint8_t address);
             virtual ~Device() = default;
 
+            uint_fast8_t get_address() const;
+
         protected:
-            std::size_t write_i2c(uint8_t* buffer, std::size_t length);
-            std::size_t read_i2c(uint8_t* buffer, std::size_t length);
+            std::size_t write_i2c(uint_fast8_t* buffer, std::size_t length);
+            std::size_t read_i2c(uint_fast8_t* buffer, std::size_t length);
 
         private:
             int bus;
-            uint8_t address;
+            uint_fast8_t address;
     };
 }
 

@@ -2,6 +2,7 @@
 #define I2CPP_PCA9555_HPP
 
 #include <cstdint>
+#include <memory>
 
 #include "i2cpp/i2cpp.hpp"
 #include "i2cpp/device.hpp"
@@ -11,10 +12,16 @@ namespace i2cpp
 {
     class PCA9555 : public Device
     {
+
         public:
+            using SharedPtr = std::shared_ptr<PCA9555>;
+
             PCA9555(int bus, uint8_t address);
             PCA9555(int bus, uint8_t address, bool output);
             PCA9555(int bus, uint8_t address, uint16_t config);
+
+            uint_fast16_t get_state() const;
+            void set_state(uint_fast16_t state);
 
             uint16_t read_input();
             bool read_input_pin(uint8_t pin);
@@ -39,7 +46,8 @@ namespace i2cpp
             bool flip_config_pin(uint8_t pin);
 
         private:
-            uint16_t read_register(uint8_t reg);
+            uint_fast16_t prev_state;
+            uint_fast16_t read_register(uint8_t reg);
             bool read_register_pin(uint8_t reg, uint8_t pin);
 
             bool write_register(uint8_t reg, uint16_t data);
