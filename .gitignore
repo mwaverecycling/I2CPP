@@ -38,6 +38,7 @@ CMakeFiles/
 bin/
 lib/
 build/
+doc/
 
 .DS_Store
 *.cbp
