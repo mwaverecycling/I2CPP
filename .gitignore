@@ -46,3 +46,4 @@ CMakeCache.txt
 Makefile
 cmake_install.cmake
 doxyfile
+install_manifest.txt
