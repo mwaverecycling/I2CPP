@@ -37,9 +37,12 @@ CMakeFiles/
 
 bin/
 lib/
+doc/
+build/
 
 .DS_Store
 *.cbp
 CMakeCache.txt
 Makefile
 cmake_install.cmake
+doxyfile

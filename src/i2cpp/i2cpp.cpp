@@ -46,16 +46,19 @@ namespace i2cpp
         }
     }
 
+    /** Instance version of read_i2c() */
     std::size_t I2CPP::_write(int adapter, int address, uint8_t* buffer, std::size_t length) {
         this->_set_address(adapter, address);
         return write(adapter, buffer, length);
     }
 
+    /** Instance version of write_i2c() */
     std::size_t I2CPP::_read(int adapter, int address, uint8_t* buffer, std::size_t length) {
         this->_set_address(adapter, address);
         return read(adapter, buffer, length);
     }
 
+    /** Conditionally reconfigures ioctl and updates this->regs */
     void I2CPP::_set_address(int adapter, int address) {
         if (this->regs[adapter] != address) {
             if (ioctl(adapter, I2C_SLAVE, address) < 0) {
