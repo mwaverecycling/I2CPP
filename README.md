@@ -40,6 +40,8 @@ Install with `sudo make install`
 
 ## Documentation
 
+Documentation is hosted using [GitHub Pages](https://mwaverecycling.github.io/I2CPP/)
+You can also build documentation from source using Doxygen.
 After installing Doxygen, build the documentation from the build directory
 ```bash
 cd build
