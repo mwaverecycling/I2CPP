@@ -1,4 +1,5 @@
 
+
 # I2CPP
 
 A C++ Library for interfacing with I2C Devices on Linux systems, particularly aimed at microcontrollers like Raspberry Pi and Beaglebone
@@ -40,9 +41,9 @@ Install with `sudo make install`
 
 ## Documentation
 
-Documentation is hosted using [GitHub Pages](https://mwaverecycling.github.io/I2CPP/)
-You can also build documentation from source using Doxygen.
-After installing Doxygen, build the documentation from the build directory
+Documentation is hosted on [GitHub Pages](https://mwaverecycling.github.io/I2CPP/), but you can also build documentation from source using Doxygen.
+
+After installing Doxygen, build the documentation from the build directory:
 ```bash
 cd build
 make doc
