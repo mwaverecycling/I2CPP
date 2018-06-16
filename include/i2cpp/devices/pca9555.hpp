@@ -40,7 +40,7 @@ namespace i2cpp
              * @param bus I2C interface number to use
              * @param address Address of the device on the I2C network
              */
-            PCA9555(int bus, uint8_t address);
+            PCA9555(int bus, uint_fast8_t address);
 
             /**
              * Get a saved state from the PCA9555 object.
@@ -64,13 +64,13 @@ namespace i2cpp
              * Read the 16-bit input from the PCA9555 board.
              * @returns The read input from the board
              */
-            uint16_t read_input();
+            uint_fast16_t read_input();
             /**
              * Read a single input pin from the PCA9555 board.
              * @param pin The pin number to read from
              * @returns True if the pin is powered, false otherwise
              */
-            bool read_input_pin(uint8_t pin);
+            bool read_input_pin(uint_fast8_t pin);
             /**
              * Read the 16-bit output from the PCA9555 board.
              * This returns what the board has stored as output.
@@ -78,7 +78,7 @@ namespace i2cpp
              *
              * @returns The read output from the board
              */
-            uint16_t read_output();
+            uint_fast16_t read_output();
             /**
              * Read a single pin's output from the PCA9555 board.
              * @note Only useful for pins in output mode
@@ -86,7 +86,7 @@ namespace i2cpp
              * @param pin The pin number to read from
              * @returns True if the pin is powered, false otherwise
              */
-            bool read_output_pin(uint8_t pin);
+            bool read_output_pin(uint_fast8_t pin);
             /**
              * Read the 16-bit polarity inversion register from the PCA9555 board.
              * This returns what the board has stored as polarity.
@@ -94,7 +94,7 @@ namespace i2cpp
              *
              * @returns The read polarity from the board
              */
-            uint16_t read_polarity();
+            uint_fast16_t read_polarity();
             /**
              * Read a single pin's polarity inversion state from the PCA9555 board.
              * @note Only useful for pins in input mode
@@ -102,18 +102,18 @@ namespace i2cpp
              * @param pin The pin number to read from
              * @returns True if the pin's polarity is inverted, false otherwise
              */
-            bool read_polarity_pin(uint8_t pin);
+            bool read_polarity_pin(uint_fast8_t pin);
             /**
              * Read the 16-bit configuration of the PCA9555 board.
              * @returns The current configuration of the board
              */
-            uint16_t read_config();
+            uint_fast16_t read_config();
             /**
              * Read a single pin's configuration from the PCA9555 board.
              * @param pin The pin number to read from
              * @returns True if the current pin is configured as input, false for output
              */
-            bool read_config_pin(uint8_t pin);
+            bool read_config_pin(uint_fast8_t pin);
             //@}
 
             /**
@@ -125,13 +125,13 @@ namespace i2cpp
              * Write 16-bits to the board's output register.
              * @param data Bitmask to write to the output register
              */
-            bool write_output(uint16_t data);
+            bool write_output(uint_fast16_t data);
             /**
              * Write a single output pin on the board.
              * @param pin The pin number to write
              * @param value Power if true, ground otherwise
              */
-            bool write_output_pin(uint8_t pin, bool value);
+            bool write_output_pin(uint_fast8_t pin, bool value);
             /**
              * Write a range of output pins to the board.
              * The given bitmask is applied with the Least Significant Bit mapped to start_pin.
@@ -139,19 +139,19 @@ namespace i2cpp
              * @param end_pin End of the range, exclusive
              * @param values Bitmask to write to the pins
              */
-            bool write_output_range(uint8_t start_pin, uint8_t end_pin, uint16_t values);
+            bool write_output_range(uint_fast8_t start_pin, uint_fast8_t end_pin, uint_fast16_t values);
             /**
              * Toggle an output pin's state.
              * @param pin The pin number to toggle
              */
-            bool flip_output_pin(uint8_t pin);
+            bool flip_output_pin(uint_fast8_t pin);
             /**
              * Write 16-bits to the board's polarity inversion register.
              * @note Only useful for pins in input mode
              *
              * @param data Bitmask to write to the polarity inversion register
              */
-            bool write_polarity(uint16_t data);
+            bool write_polarity(uint_fast16_t data);
             /**
              * Write a single pin's polarity to the board.
              * @note Only useful for pins in input mode
@@ -159,7 +159,7 @@ namespace i2cpp
              * @param pin The pin number to write
              * @param value Inverse Polarity if true, normal operation otherwise
              */
-            bool write_polarity_pin(uint8_t pin, bool value);
+            bool write_polarity_pin(uint_fast8_t pin, bool value);
             /**
              * Write a range of polarities to the board.
              * The given bitmask is applied with the Least Significant Bit mapped to start_pin.
@@ -169,26 +169,26 @@ namespace i2cpp
              * @param end_pin End of the range, exclusive
              * @param values Bitmask to write to the polarity inversion register
              */
-            bool write_polarity_range(uint8_t start_pin, uint8_t end_pin, uint16_t values);
+            bool write_polarity_range(uint_fast8_t start_pin, uint_fast8_t end_pin, uint_fast16_t values);
             /**
              * Toggle an input pin's polarity.
              * @note Only useful for pins in input mode
              *
              * @param pin The pin number to toggle
              */
-            bool flip_polarity_pin(uint8_t pin);
+            bool flip_polarity_pin(uint_fast8_t pin);
             /**
              * Write 16-bits to the board's configuration register.
              * 0's are output mode, 1's are input mode.
              * @param data Bitmask to write to the configuration register
              */
-            bool write_config(uint16_t data);
+            bool write_config(uint_fast16_t data);
             /**
              * Write a single pin's configuration to the board.
              * @param pin The pin number to configure
              * @param value Input Mode if true, Output Mode otherwise
              */
-            bool write_config_pin(uint8_t pin, bool value);
+            bool write_config_pin(uint_fast8_t pin, bool value);
             /**
              * Write a range of configurations to the board.
              * The given bitmask is applied with the Least Significant Bit mapped to start_pin.
@@ -197,23 +197,23 @@ namespace i2cpp
              * @param end_pin End of the range, exclusive
              * @param values Bitmask to write to the polarity inversion register
              */
-            bool write_config_range(uint8_t start_pin, uint8_t end_pin, uint16_t values);
+            bool write_config_range(uint_fast8_t start_pin, uint_fast8_t end_pin, uint_fast16_t values);
             /**
              * Toggle a pin's configuration bit.
              * @param pin The pin number to toggle
              */
-            bool flip_config_pin(uint8_t pin);
+            bool flip_config_pin(uint_fast8_t pin);
             //@}
 
         private:
             uint_fast16_t prev_state;
-            uint_fast16_t read_register(uint8_t reg);
-            bool read_register_pin(uint8_t reg, uint8_t pin);
+            uint_fast16_t read_register(uint_fast8_t reg);
+            bool read_register_pin(uint_fast8_t reg, uint_fast8_t pin);
 
-            bool write_register(uint8_t reg, uint16_t data);
-            bool write_register_pin(uint8_t reg, uint8_t pin, bool value);
-            bool write_register_range(uint8_t reg, uint8_t start_pin, uint8_t end_pin, uint16_t values);
-            bool flip_register_pin(uint8_t reg, uint8_t pin);
+            bool write_register(uint_fast8_t reg, uint_fast16_t data);
+            bool write_register_pin(uint_fast8_t reg, uint_fast8_t pin, bool value);
+            bool write_register_range(uint_fast8_t reg, uint_fast8_t start_pin, uint_fast8_t end_pin, uint_fast16_t values);
+            bool flip_register_pin(uint_fast8_t reg, uint_fast8_t pin);
     };
 }
 

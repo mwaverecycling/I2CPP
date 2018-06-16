@@ -28,11 +28,11 @@ namespace i2cpp
         }
     }
 
-    std::size_t I2CPP::write_i2c(int adapter, int address, uint8_t *buffer, std::size_t length) {
+    std::size_t I2CPP::write_i2c(int adapter, int address, uint_fast8_t *buffer, std::size_t length) {
         return instance()._write(adapter, address, buffer, length);
     }
 
-    std::size_t I2CPP::read_i2c(int adapter, int address, uint8_t *buffer, std::size_t length) {
+    std::size_t I2CPP::read_i2c(int adapter, int address, uint_fast8_t *buffer, std::size_t length) {
         return instance()._read(adapter, address, buffer, length);
     }
 
@@ -47,13 +47,13 @@ namespace i2cpp
     }
 
     /** Instance version of read_i2c() */
-    std::size_t I2CPP::_write(int adapter, int address, uint8_t* buffer, std::size_t length) {
+    std::size_t I2CPP::_write(int adapter, int address, uint_fast8_t* buffer, std::size_t length) {
         this->_set_address(adapter, address);
         return write(adapter, buffer, length);
     }
 
     /** Instance version of write_i2c() */
-    std::size_t I2CPP::_read(int adapter, int address, uint8_t* buffer, std::size_t length) {
+    std::size_t I2CPP::_read(int adapter, int address, uint_fast8_t* buffer, std::size_t length) {
         this->_set_address(adapter, address);
         return read(adapter, buffer, length);
     }

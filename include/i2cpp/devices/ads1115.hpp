@@ -26,7 +26,7 @@ namespace i2cpp
         public:
             using SharedPtr = std::shared_ptr<ADS1115>;
 
-            ADS1115(int bus, uint8_t address);
+            ADS1115(int bus, uint_fast8_t address);
 
     };
 }

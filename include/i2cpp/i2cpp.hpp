@@ -55,7 +55,7 @@ namespace i2cpp
              * @param[in] buffer Array of bytes to write to from the bus
              * @param length Length of buffer
              */
-            static std::size_t read_i2c(int adapter, int address, uint8_t* buffer, std::size_t length);
+            static std::size_t read_i2c(int adapter, int address, uint_fast8_t* buffer, std::size_t length);
             /**
              * Write a buffer of bytes to I2C.
              * Given an adapter file descriptor and address on the I2C bus, writes the given buffer to it
@@ -65,7 +65,7 @@ namespace i2cpp
              * @param[out] buffer Array of bytes to write to the bus
              * @param length Length of buffer
              */
-            static std::size_t write_i2c(int adapter, int address, uint8_t* buffer, std::size_t length);
+            static std::size_t write_i2c(int adapter, int address, uint_fast8_t* buffer, std::size_t length);
 
         private:
             I2CPP();
@@ -83,10 +83,10 @@ namespace i2cpp
              * Since ioctl is wierd, we have to reconfigure IO each time we want to send to a different address.
              * This map keeps track of the previously addressed device to avoid resetting every time.
              */
-            std::map<int, uint8_t> regs;
+            std::map<int, uint_fast8_t> regs;
 
-            std::size_t _read(int adapter, int address, uint8_t* buffer, std::size_t length);
-            std::size_t _write(int adapter, int address, uint8_t* buffer, std::size_t length);
+            std::size_t _read(int adapter, int address, uint_fast8_t* buffer, std::size_t length);
+            std::size_t _write(int adapter, int address, uint_fast8_t* buffer, std::size_t length);
             void _set_address(int bus, int address);
     };
 }
