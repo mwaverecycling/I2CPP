@@ -42,21 +42,6 @@ namespace i2cpp
              */
             PCA9555(int bus, uint_fast8_t address);
 
-            /**
-             * Get a saved state from the PCA9555 object.
-             * Returns a 16-bit value previously set by set_state().
-             * @note This class never changes its state variable, it is read and written exclusively by the caller
-             *
-             * @returns Saved state of the PCA9555
-             */
-            uint_fast16_t get_state() const;
-            /**
-             * Set tbe saved state of the PCA9555 object.
-             * @note This class never changes its state variable, it is read and written exclusively by the caller
-             *
-             * @param state The new 16-bit state variable
-             */
-            void set_state(uint_fast16_t state);
 
             /** @name Read data from the PCA9555 board */
             //@{
@@ -206,7 +191,6 @@ namespace i2cpp
             //@}
 
         private:
-            uint_fast16_t prev_state;
             uint_fast16_t read_register(uint_fast8_t reg);
             bool read_register_pin(uint_fast8_t reg, uint_fast8_t pin);
 

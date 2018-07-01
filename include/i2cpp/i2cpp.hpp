@@ -9,6 +9,7 @@
 #include <cstdint>
 #include <string>
 #include <map>
+#include <mutex>
 
 namespace i2cpp
 {
@@ -72,12 +73,18 @@ namespace i2cpp
             ~I2CPP();
             static I2CPP& instance();
 
+            int _open_adapter(std::string filename);
+
             /**
              * Map of currently allocated File Descriptors
              * Used to ensure only one instance of each file descriptor is used,
              * then used to free each allocated fd
              */
             std::map<std::string, int> fds;
+            /**
+             * Map of mutexes for each currently allocated file descriptor
+             */
+            std::map<int, std::mutex*> fd_mutexes;
             /**
              * Map of each File Descriptor's currently set I2C address.
              * Since ioctl is wierd, we have to reconfigure IO each time we want to send to a different address.

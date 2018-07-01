@@ -4,8 +4,6 @@
 namespace i2cpp
 {
     PCA9555::PCA9555(int bus, uint_fast8_t address) : Device(bus, address) {  }
-    uint_fast16_t PCA9555::get_state() const { return this->prev_state; }
-    void PCA9555::set_state(uint_fast16_t state) { this->prev_state = state; }
 
 
     uint_fast16_t PCA9555::read_input() { return this->read_register(0x00); }

@@ -19,12 +19,16 @@ namespace i2cpp
     }
 
     int I2CPP::open_adapter(std::string filename) {
-        if (instance().fds.find(filename) == instance().fds.end()) {
+        return instance()._open_adapter(filename);
+    }
+    int I2CPP::_open_adapter(std::string filename) {
+        if (this->fds.find(filename) == this->fds.end()) {
             int fd = open(filename.c_str(), O_RDWR);
-            instance().fds.insert(std::make_pair(filename, fd));
+            this->fds.insert(std::make_pair(filename, fd));
+            this->fd_mutexes.insert(std::make_pair(fd, new std::mutex()));
             return fd;
         } else {
-            return instance().fds.at(filename);
+            return this->fds.at(filename);
         }
     }
 
@@ -40,6 +44,11 @@ namespace i2cpp
     I2CPP::I2CPP() {}
 
     I2CPP::~I2CPP() {
+        std::map<int, std::mutex*>::iterator fdm_itr;
+        for (fdm_itr = this->fd_mutexes.begin(); fdm_itr != this->fd_mutexes.end(); fdm_itr++) {
+            delete fdm_itr->second;
+        }
+
         std::map<std::string, int>::iterator fd_itr;
         for (fd_itr = this->fds.begin(); fd_itr != this->fds.end(); fd_itr++) {
             close(fd_itr->second);
@@ -48,13 +57,17 @@ namespace i2cpp
 
     /** Instance version of read_i2c() */
     std::size_t I2CPP::_write(int adapter, int address, uint_fast8_t* buffer, std::size_t length) {
+        this->fd_mutexes[adapter]->lock();
         this->_set_address(adapter, address);
+        this->fd_mutexes[adapter]->unlock();
         return write(adapter, buffer, length);
     }
 
     /** Instance version of write_i2c() */
     std::size_t I2CPP::_read(int adapter, int address, uint_fast8_t* buffer, std::size_t length) {
+        this->fd_mutexes[adapter]->lock();
         this->_set_address(adapter, address);
+        this->fd_mutexes[adapter]->unlock();
         return read(adapter, buffer, length);
     }
 
