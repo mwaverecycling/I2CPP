@@ -42,7 +42,7 @@ namespace i2cpp
     {
         uint_fast8_t buffer[3] = { reg, 0x00, 0x00 };
         this->read_i2c(buffer, 3);
-        return uint_fast16_t((buffer[1] << 8) | buffer[0]);
+        return uint_fast16_t(((uint_fast16_t)buffer[1] << 8) | buffer[0]);
     }
     bool PCA9555::read_register_pin(uint_fast8_t reg, uint_fast8_t pin)
     {
@@ -59,9 +59,9 @@ namespace i2cpp
     {
         uint_fast16_t old = this->read_register(reg);
         if(value) {
-            old |= (1 << pin);
+            old = old | uint_fast16_t(1 << pin);
         } else {
-            old &= ~(1 << pin);
+            old = old & ~uint_fast16_t(1 << pin);
         }
         return this->write_register(reg, old);
     }
@@ -71,9 +71,9 @@ namespace i2cpp
         for(uint_fast8_t i = start_pin; i < end_pin; i++)
         {
             if((values & (1 << (i - start_pin))) > 0) {
-                old |= (1 << i);
+                old = old | uint_fast16_t(1 << i);
             } else {
-                old &= ~(1 << i);
+                old = old & ~uint_fast16_t(1 << i);
             }
         }
         return this->write_register(reg, old);
@@ -82,9 +82,9 @@ namespace i2cpp
     {
         uint_fast16_t old = this->read_register(reg);
         if((old & (1 << pin)) == 0) {
-            old |= (1 << pin);
+            old = old | uint_fast16_t(1 << pin);
         } else {
-            old &= ~(1 << pin);
+            old = old & ~uint_fast16_t(1 << pin);
         }
         return this->write_register(reg, old);
     }
