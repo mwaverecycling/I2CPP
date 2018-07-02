@@ -25,7 +25,7 @@ namespace i2cpp
         if (this->fds.find(filename) == this->fds.end()) {
             int fd = open(filename.c_str(), O_RDWR);
             this->fds.insert(std::make_pair(filename, fd));
-            this->fd_mutexes.insert(std::make_pair(fd, new std::mutex()));
+            this->fd_mutexes.emplace(fd, new std::mutex);
             return fd;
         } else {
             return this->fds.at(filename);
@@ -57,18 +57,19 @@ namespace i2cpp
 
     /** Instance version of read_i2c() */
     std::size_t I2CPP::_write(int adapter, int address, uint_fast8_t* buffer, std::size_t length) {
-        this->fd_mutexes[adapter]->lock();
+        std::mutex* mut = this->fd_mutexes[adapter];
+        std::lock_guard<std::mutex> lock(*mut);
         this->_set_address(adapter, address);
-        this->fd_mutexes[adapter]->unlock();
         return write(adapter, buffer, length);
     }
 
     /** Instance version of write_i2c() */
     std::size_t I2CPP::_read(int adapter, int address, uint_fast8_t* buffer, std::size_t length) {
-        this->fd_mutexes[adapter]->lock();
+        std::mutex* mut = this->fd_mutexes[adapter];
+        std::lock_guard<std::mutex> lock(*mut);
         this->_set_address(adapter, address);
-        this->fd_mutexes[adapter]->unlock();
-        return read(adapter, buffer, length);
+        write(adapter, buffer, 1);
+        return read(adapter, buffer + 1, length - 1);
     }
 
     /** Conditionally reconfigures ioctl and updates this->regs */

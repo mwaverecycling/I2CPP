@@ -40,7 +40,7 @@ namespace i2cpp
     {
         uint_fast8_t buffer[3] = { reg, 0x00, 0x00 };
         this->read_i2c(buffer, 3);
-        return uint_fast16_t(((uint_fast16_t)buffer[1] << 8) | buffer[0]);
+        return uint_fast16_t(((uint_fast16_t)buffer[2] << 8) | buffer[1]);
     }
     bool PCA9555::read_register_pin(uint_fast8_t reg, uint_fast8_t pin)
     {
