@@ -2,7 +2,7 @@
 
 # I2CPP
 
-A C++ Library for interfacing with I2C Devices on Linux systems, particularly aimed at microcontrollers like Raspberry Pi and Beaglebone
+A C++ Library for interfacing with I2C Devices on Linux systems, particularly aimed at microcontrollers such as Raspberry Pi and Beaglebone.
 
 ## Usage Example
 
@@ -16,14 +16,14 @@ int main()
     io_exp.write_output_pin(0, true);
 }
 ```
-Include the library when you compile
+Include the library when you compile:
 ```bash
 g++ your_source.cpp -li2cpp
 ```
 
 ## Dependencies
 
-There are no runtime dependencies, but the project requires [CMake](https://cmake.org/download/) to build and [Doxygen](http://www.stack.nl/~dimitri/doxygen/download.html) for documentation
+There are no runtime dependencies, but the project requires [CMake](https://cmake.org/download/) to build and [Doxygen](http://www.stack.nl/~dimitri/doxygen/download.html) for documentation.
 
 ## Building and Installation
 
